@@ -1,0 +1,13 @@
+<div class="jumbotron text-center">
+	<h1>Welcome to the Athlete Manager.</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Keep track of athletes the efficient way.</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+	<div ng-if="main.loggedIn">
+		<p>Manage your athletes.</p>
+		<a href="/athletes" class="btn btn-primary">View athletes</a>
+	</div>
+</div>

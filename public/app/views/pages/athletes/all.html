@@ -1,0 +1,39 @@
+<div class="page-header">
+	<h1>
+		Athletes
+		<a href="/athletes/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span> 
+			Add athlete
+		</a>
+	</h1>
+
+</div>
+
+<div class="jumbotron text-center" ng-show="athlete.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading athletes...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="athlete.athletes">
+	<thead>
+		<tr>
+			<th>School Id</th>
+			<th>Name</th>
+			<th>Grade</th>
+			<th>School</th>
+			<th class="col-sm-2">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="person in athlete.athletes">
+			<td>{{ person._id }}</td>
+			<td>{{ person.name.first }} {{ person.name.last }}</td>
+			<td>{{ person.grade }}</td>
+			<td>{{ person.school }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/athletes/{{ person._id }}" class="btn btn-danger">Edit</a>
+				<a href="#" ng-click="athlete.deleteAthlete(person._id)" class="btn btn-primary">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

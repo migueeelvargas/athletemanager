@@ -1,0 +1,9 @@
+#Dependency directories
+node_modules/*
+jspm_modules
+
+# Optional npm cache directories
+.npm
+
+# Local folders only
+resources/*

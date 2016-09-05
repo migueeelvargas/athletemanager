@@ -1,0 +1,66 @@
+<div class="page-header">
+	<h1 ng-if="athlete.type == 'create'">Create Athlete</h1>
+	<h1 ng-if="athlete.type == 'edit'">Edit Athlete</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="athlete.saveAthlete()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Student Id</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" ng-model="athlete.athleteData.id">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">First Name</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" ng-model="athlete.athleteData.first">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Last Name</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" ng-model="athlete.athleteData.last">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Grade</label>
+
+		<div class="col-sm-3">
+			<select class="form-control" ng-model="athlete.athleteData.grade">
+				<option value="Freshman">Freshman</option>
+				<option value="Sophomore">Sophomore</option>
+				<option value="Junior">Junior</option>
+				<option value="Senior">Senior</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">School</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" ng-model="athlete.athleteData.school">
+		</div>
+	</div>
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-3">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="athlete.type == 'create'">Create athlete</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="athlete.type == 'edit'">Update athlete</button>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="athlete.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ athlete.message }}
+		</div>
+
+	</div>
+</div>
