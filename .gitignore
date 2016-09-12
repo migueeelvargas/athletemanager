@@ -7,3 +7,6 @@ jspm_modules
 
 # Local folders only
 resources/*
+
+# Config file
+config.js
