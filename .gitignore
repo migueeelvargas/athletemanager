@@ -10,3 +10,5 @@ resources/*
 
 # Config file
 config.js
+
+.gitignore
