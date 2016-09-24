@@ -1,6 +1,8 @@
-var bodyParser = require('body-parser'); 	// get body-parser
+var bodyParser = require('body-parser');
 var User       = require('../models/user');
-var Athlete 	 = require('../models/athlete')
+var Athlete 	 = require('../models/athlete');
+var School 		 = require('../models/school');
+var Account 	 = require('../models/account');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -60,50 +62,78 @@ module.exports = function(app, express) {
 	  });
 	});
 
-	// route middleware to verify a token
-	apiRouter.use(function(req, res, next) {
-		// do logging
-		console.log('Somebody just came to our app!');
+	// // route middleware to verify a token
+	// apiRouter.use(function(req, res, next) {
+	// 	// do logging
+	// 	console.log('Somebody just came to our app!');
 
-	  // check header or url parameters or post parameters for token
-	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+	//   // check header or url parameters or post parameters for token
+	//   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-	  // decode token
-	  if (token) {
+	//   // decode token
+	//   if (token) {
 
-	    // verifies secret and checks exp
-	    jwt.verify(token, superSecret, function(err, decoded) {      
+	//     // verifies secret and checks exp
+	//     jwt.verify(token, superSecret, function(err, decoded) {      
 
-	      if (err) {
-	        res.status(403).send({ 
-	        	success: false, 
-	        	message: 'Failed to authenticate token.' 
-	    	});  	   
-	      } else { 
-	        // if everything is good, save to request for use in other routes
-	        req.decoded = decoded;
+	//       if (err) {
+	//         res.status(403).send({ 
+	//         	success: false, 
+	//         	message: 'Failed to authenticate token.' 
+	//     	});  	   
+	//       } else { 
+	//         // if everything is good, save to request for use in other routes
+	//         req.decoded = decoded;
 	            
-	        next(); // make sure we go to the next routes and don't stop here
-	      }
-	    });
+	//         next(); // make sure we go to the next routes and don't stop here
+	//       }
+	//     });
 
-	  } else {
+	//   } else {
 
-	    // if there is no token
-	    // return an HTTP response of 403 (access forbidden) and an error message
-   	 	res.status(403).send({ 
-   	 		success: false, 
-   	 		message: 'No token provided.' 
-   	 	});
+	//     // if there is no token
+	//     // return an HTTP response of 403 (access forbidden) and an error message
+ //   	 	res.status(403).send({ 
+ //   	 		success: false, 
+ //   	 		message: 'No token provided.' 
+ //   	 	});
 	    
-	  }
-	});
+	//   }
+	// });
 
 	// test route to make sure everything is working 
 	// accessed at GET http://localhost:8080/api
 	apiRouter.get('/', function(req, res) {
 		res.json({ message: 'hooray! welcome to our api!' });	
 	});
+
+	// on routes that end in /accounts/
+	// ----------------------------------------------------
+	apiRouter.route('/accounts')
+
+		// create an account
+		.post(function(req, res) {
+
+			var account = new Account();
+			account.name.first = req.body.first;
+			account.name.last = req.body.last;
+			account.username = req.body.username;
+			account.password = req.body.password;
+			account.type = req.body.type;
+
+			account.save(function(err) {
+				if (err) {
+					// if there's a duplicate entry
+					if (err.code == 11000)
+						return res.json({ success: false, message: 'An account with that username already exists.'});
+					else
+						return res.send(err);
+				}
+
+				// return a successful message
+				res.json({ message: 'Account created!' });
+			});
+		}) 
 
 	// on routes that end in /users
 	// ----------------------------------------------------
@@ -290,6 +320,47 @@ apiRouter.route('/athletes/:athlete_id')
 			res.json({ message: 'Succesfully deleted' });
 		});
 	});
+
+// // on routes that end in /schools
+// apiRouter.route('/schools')
+
+// 	// create a School (POST)
+// 	.post(function(req, res) {
+
+// 		// create new instance of school model
+// 		var school = new School();
+// 		school.name = req.body.name;
+// 		school.address = req.body.address;
+// 		school.city = req.body.city;
+// 		school.state = req.body.state;
+// 		school.zipcode = req.body.zipcode;
+// 		school.phone = req.body.phone;
+
+// 		school.save(function(err) {
+// 			if (err) {
+// 				// duplicate entry
+// 				if (err.code == 11000)
+// 					return res.json({ success: false, message: 'This school already exists.'});
+// 				else
+// 					return res.send(err);
+// 			}
+
+// 			// return a message
+// 			res.json({ message: 'School succesfully added!'});
+// 		})
+
+// 	// get all the schools (accessed at GET /api/schools)
+// 	.get(function(req, res) {
+
+// 		School.find({}, function(err, schools) {
+// 			if (err) res.send(err);
+
+// 			// return the users
+// 			res.json(schools);
+// 		});
+// 	});
+
+// });
 
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

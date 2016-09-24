@@ -15,11 +15,16 @@ var AthleteSchema = new Schema({
 		type: String,
 		required: true
 	},
+	// school: {
+	// 	type: String,
+	// 	required: true
+	// },
+	email: String,
 	school: {
-		type: String,
+		type: Schema.ObjectId,
+		ref: 'School',
 		required: true
-	},
-	email: String
+	}
 });
 
 // return the model
