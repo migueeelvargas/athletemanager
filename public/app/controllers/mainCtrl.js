@@ -3,6 +3,7 @@ angular.module('mainCtrl', [])
 .controller('mainController', function($rootScope, $location, Auth) {
 
 	var vm = this;
+	var isAdmin = false;
 
 	// get info if a person is logged in
 	vm.loggedIn = Auth.isLoggedIn();
@@ -49,5 +50,9 @@ angular.module('mainCtrl', [])
 	vm.createSample = function() {
 		Auth.createSampleUser();
 	};
+
+	vm.updateBackground = function() {
+		isAdmin = true;
+	}
 
 });

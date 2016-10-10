@@ -8,7 +8,7 @@ angular.module('athleteManager', [
 	'userCtrl', 
 	'userService',
 	'accountCtrl',
-	'accountService'
+	'accountService',
 	])
 
 // application configuration to integrate token into requests

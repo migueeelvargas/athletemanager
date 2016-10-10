@@ -61,7 +61,7 @@ angular.module('app.routes', ['ngRoute'])
 		})
 
 		// form to create a new account
-		.when('/accounts/create', {
+		.when('/signup', {
 			templateUrl: 'app/views/pages/accounts/create.html',
 			controller: 'accountCreateController',
 			controllerAs: 'account'
