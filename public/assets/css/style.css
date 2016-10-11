@@ -2,6 +2,10 @@ main 					{
 	padding-top:30px;	
 }
 
+body {
+/*	background-color: #3D8EB9;*/
+}
+
 /* HEADER 
 ===================== */
 header .navbar 		{ 
@@ -17,11 +21,26 @@ header a {
 ====================== */
 
 /* show and hide */
-.show-hide-message.ng-hide-remove {
+/*.show-hide-message.ng-hide-remove {
 	-webkit-animation:zoomIn 0.3s both ease;
 	-moz-animation:zoomIn 0.3s both ease;
 	animation:zoomIn 0.3s both ease;
+}*/
+
+/*.ng-enter, .ng-leave {
+	width: 100%;
+	position: absolute;
 }
+.ng-enter {
+	-webkit-animation:fadeIn 1.2s both ease-in;
+	-moz-animation:fadeIn 1.2s both ease-in;
+	 animation:fadeIn 1.2s both ease-in;
+}
+.ng-leave {
+	-webkit-animation:zoomOutDown 1.2s both ease-in;
+	-moz-animation:zoomOutDown 1.2s both ease-in;
+	 animation:zoomOutDown 1.2s both ease-in;
+}*/
 
 /* ANIMATIONS
 ====================== */
@@ -44,4 +63,57 @@ header a {
 @-moz-keyframes spin {
 	from 	{ -moz-transform:rotate(0deg); }	
 	to 	{ -moz-transform:rotate(360deg); }
+}
+
+/* LOGIN PAGE */
+
+#login {
+	border-radius: 10px;
+	background-color: rgba(255,255,255, 0.3);
+	padding: 30px;
+
+}
+
+#login h1 {
+	text-transform: lowercase;
+	text-align: center;
+	color: #fff;
+	margin-bottom: 25px;
+	font-weight: 200;
+}
+
+#login label {
+	text-transform: lowercase;
+	color: #fff;
+	font-weight: 200;
+}
+
+#sign-up  {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 12px;
+	color: #fff;
+}
+
+#sign-up a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#sign-up a:hover {
+	color: #2ecc71;
+}
+
+#bg-login {
+	background-color: #34495e;
+}
+
+#login-button {
+	background-color: #2ecc71;
+	border: 0 none;
+}
+
+#login-button:hover {
+	background-color: #27ae60;
+	border: 0 none;
 }

@@ -1,12 +1,14 @@
 angular.module('athleteManager', [
-	'ngAnimate', 
+	'ngAnimate',
 	'app.routes', 
 	'authService',
 	'athleteCtrl',
 	'athleteService', 
 	'mainCtrl', 
 	'userCtrl', 
-	'userService'
+	'userService',
+	'accountCtrl',
+	'accountService',
 	])
 
 // application configuration to integrate token into requests

@@ -58,6 +58,13 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/athletes/single.html',
 			controller: 'athleteEditController',
 			controllerAs: 'athlete'
+		})
+
+		// form to create a new account
+		.when('/signup', {
+			templateUrl: 'app/views/pages/accounts/create.html',
+			controller: 'accountCreateController',
+			controllerAs: 'account'
 		});
 
 	$locationProvider.html5Mode(true);

@@ -1,0 +1,67 @@
+<div class="page-header">
+	<h1>CREATE ACCOUNT</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="account.saveAccount()">
+	
+	<!-- First name -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label">First:</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model="account.accountData.first">
+		</div>
+	</div>
+
+	<!-- Last name -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Last: </label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model="account.accountData.last">
+		</div>
+	</div>
+
+	<!-- Username -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Username:</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model="account.accountData.username">
+		</div>
+	</div>
+
+	<!-- Password *need to add validation -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Password:</label>
+		<div class="col-sm-4">
+			<input type="password" class="form-control" ng-model="account.accountData.password">
+		</div>
+	</div>
+
+	<!-- Type -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Type:</label>
+		<div class="col-sm-4">
+			<select class="form-control" ng-model="account.accountData.type">
+				<option ng-repeat="x in account.accountTypes" value="{{ x.type }}"> {{ x.model }}</option> 
+			</select>
+		</div>
+	</div>
+
+	<!-- Create Button -->
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-4">
+			<button type="submit" class="btn btn-success btn-lg btn-block">Create</button>
+		</div>
+	</div>
+
+	<!-- Message -->
+	<div class="row show-hide-message" ng-show="account.message">
+		<div class="col-sm-4 col-sm-offset-2">
+			
+			<div class="alert alert-info">
+				{{ account.message }}
+			</div>
+
+		</div>
+	</div>
+
+</form>
